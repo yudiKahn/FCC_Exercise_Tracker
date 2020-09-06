@@ -1,12 +1,12 @@
 const express = require('express')
 const app = express()
-const config = require('config'); 
 const cors = require('cors')
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-mongoose.connect(config.get('DB_URL'), { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=>console.log('db is connected'))
-.catch(er=>console.log(er))
+.catch(er=>console.log(er));
 
 app.use(cors())
 app.use(express.urlencoded({extended: false}));
